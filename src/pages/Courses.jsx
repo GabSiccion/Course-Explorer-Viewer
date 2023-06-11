@@ -8,22 +8,22 @@ export function Courses() {
   const { selectedCourse, setSelectedCourse } = useContext(
     SelectedCourseContext
   );
-  const [courseData, setCourseData] = useState([]);
+  const [courseData, setCourseData] = useState({});
 
   useEffect(() => {
     const getCourseData = async () => {
-      const docRef = doc(db, "courses", selectedCourse);
-      const docSnap = await getDoc(docRef);
-      if (docSnap.exists()) {
-        setCourseData(docSnap.data());
+      const courseData = await getDoc(doc(db, "courses", selectedCourse));
+      if (courseData.data != undefined) {
+        setCourseData(courseData.data());
+        console.log(courseData.courseTracks);
       } else {
-        console.log("No such document!");
+        console.log("no data");
       }
     };
     getCourseData();
   }, [selectedCourse]);
 
-  if (selectedCourse === "") {
+  if (selectedCourse === "" || Object.keys(courseData).length === 0) {
     return (
       <>
         <div>
@@ -35,7 +35,7 @@ export function Courses() {
       </>
     );
   } else {
-    const tracksArray = () => {
+    const Array = () => {
       let tracks = courseData.courseTracks.map((track) => {
         let topics = track.trackTopics.map((topic) => {
           return (
@@ -91,7 +91,7 @@ export function Courses() {
         </div>
         <div className="course-container container pt-4">
           <p>{courseData.courseTexts}</p>
-          <div className="track-container">{tracksArray()}</div>
+          <div className="track-container">{Array()}</div>
         </div>
       </>
     );
