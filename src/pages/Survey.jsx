@@ -1,5 +1,3 @@
-import { Nav } from "../components/Nav";
-
 export function Survey() {
   return (
     <>
@@ -29,10 +27,16 @@ export function Survey() {
             feel the most comfortable with. Please read them before answering
             the CourseExplorer survey.
           </p>
-          <a href="../assets/ICF_TAGALOG.pdf" target="blank">
+          <a
+            href="https://drive.google.com/file/d/1elPkHIR61LCZd05l_6p9yuNFJ7-Z8B-F/view?usp=sharing"
+            target="blank"
+          >
             Informed Consent (Tagalog)
           </a>
-          <a href="../assets/ICF_ENGLISH.pdf" target="blank">
+          <a
+            href="https://drive.google.com/file/d/1oiJLswFlF1nIUrORIp0vNw5kkaJAkQO7/view?usp=sharing"
+            target="blank"
+          >
             Informed Consent (English)
           </a>
           <button className="btn btn-success mt-4" id="icfButton">

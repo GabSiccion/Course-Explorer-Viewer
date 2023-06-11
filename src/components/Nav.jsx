@@ -1,4 +1,8 @@
+import { getDocs, collection, doc, onSnapshot } from "firebase/firestore";
+import { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import { db, auth, coursesCollectionRef } from "../config/Firebase";
+import { SelectedCourseContext } from "../helper/SelectedCourseContext";
 
 export function Nav() {
   return (
@@ -8,18 +12,6 @@ export function Nav() {
           CourseExplorer
         </a>
 
-        <button
-          type="button"
-          className="navbar-toggler"
-          data-bs-target="#navbarNav"
-          data-bs-toggle="collapse"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item active">
@@ -27,25 +19,14 @@ export function Nav() {
                 <div className="nav-link">Home</div>
               </Link>
             </li>
-            <li className="nav-item active dropdown">
-              <a
-                className="nav-link dropdown-toggle"
-                id="navbarDropdown"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Courses
-              </a>
-              <ul
-                id="dropdown-menu"
-                className="dropdown-menu"
-                aria-labelledby="navbarDropdown"
-              ></ul>
+            <li className="nav-item active">
+              <Link to="courses">
+                <div className="nav-link">Courses</div>
+              </Link>
             </li>
             <li className="nav-item active">
               <Link to="about">
-                <div className="nav-link">about</div>
+                <div className="nav-link">About</div>
               </Link>
             </li>
             <li className="nav-item active">

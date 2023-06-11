@@ -1,6 +1,5 @@
-import "bootstrap/dist/css/bootstrap.min.css";
 import "../App.css";
-import { Nav } from "../components/Nav";
+import OnlineTestSVG from "../assets/online-test.svg?component";
 
 export function Home() {
   return (
@@ -10,16 +9,11 @@ export function Home() {
           <h1 className="align-middle">Home</h1>
         </div>
       </div>
-
       <div className="hero-backgroundimage mb-4">
         <div className="container">
           <div className="hero-container">
             <div className="hero-image-container">
-              <img
-                src="../src/images/online-test.svg"
-                alt="..."
-                className="hero-image"
-              />
+              <img src={OnlineTestSVG} alt="..." className="hero-image" />
             </div>
             <div>
               <h1 className="hero-title text-success">CourseExplorer</h1>

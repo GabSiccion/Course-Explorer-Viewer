@@ -190,7 +190,7 @@ body {
 
 .hero-backgroundimage {
   background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-    url("../images/hero-bp-full.jpg");
+    url("./assets/hero-bp-full.jpg");
 }
 
 .hero-container {
@@ -276,4 +276,12 @@ body {
 
 .btn pre {
   margin: 0;
+}
+
+.course-selection-rail {
+  background-color: grey;
+  padding: 0.4rem;
+  -webkit-box-shadow: inset 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: inset 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: inset 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
 }
