@@ -2,7 +2,6 @@ import { useContext, useEffect, useState } from "react";
 import { SelectedCourseContext } from "../helper/SelectedCourseContext";
 import { db, auth } from "../config/Firebase";
 import { doc, getDoc } from "firebase/firestore";
-import { CourseSelection } from "../components/CourseSelection";
 
 export function Courses() {
   const { selectedCourse, setSelectedCourse } = useContext(
@@ -15,7 +14,6 @@ export function Courses() {
       const courseData = await getDoc(doc(db, "courses", selectedCourse));
       if (courseData.data != undefined) {
         setCourseData(courseData.data());
-        console.log(courseData.courseTracks);
       } else {
         console.log("no data");
       }
@@ -26,11 +24,8 @@ export function Courses() {
   if (selectedCourse === "" || Object.keys(courseData).length === 0) {
     return (
       <>
-        <div>
-          <CourseSelection />
-        </div>
         <div className="course-content-wrapper mt-4 container">
-          <p className="course-name fs-4">Select a course to edit.</p>
+          <p className="course-name fs-4">Select a course to view.</p>
         </div>
       </>
     );
@@ -81,9 +76,6 @@ export function Courses() {
 
     return (
       <>
-        <div>
-          <CourseSelection />
-        </div>
         <div className="jumbotron">
           <div className="container">
             <h1>{courseData.courseName}</h1>

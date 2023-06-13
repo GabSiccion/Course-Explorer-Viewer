@@ -20,8 +20,8 @@ export function Nav() {
               </Link>
             </li>
             <li className="nav-item active">
-              <Link to="courses">
-                <div className="nav-link">Courses</div>
+              <Link to="explorer">
+                <div className="nav-link">Explorer</div>
               </Link>
             </li>
             <li className="nav-item active">
