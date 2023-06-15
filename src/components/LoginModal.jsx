@@ -21,7 +21,7 @@ export function LoginModal({ loginModalOpen }) {
             </button>
           </div>
           <div className="title">
-            <h1>LOGIN</h1>
+            <p className="fs-1">LOGIN</p>
           </div>
           <div className="body">
             <div>
@@ -51,14 +51,13 @@ export function LoginModal({ loginModalOpen }) {
           </div>
           <div className="footer">
             <Button variant="success">Login</Button>
-            <Button
-              variant="warning"
+            <a
               onClick={() => {
                 setRegsiterModal(true);
               }}
             >
               Register new account
-            </Button>
+            </a>
           </div>
         </div>
       </div>
@@ -81,6 +80,7 @@ export function LoginModal({ loginModalOpen }) {
           </div>
           <div className="body">
             <div>
+              <p>Email Address:</p>
               <input
                 placeholder="Email"
                 type="email"
@@ -92,6 +92,7 @@ export function LoginModal({ loginModalOpen }) {
               />
             </div>
             <div>
+              <p>Password: </p>
               <input
                 placeholder="Password"
                 type="password"
@@ -103,6 +104,7 @@ export function LoginModal({ loginModalOpen }) {
               />
             </div>
             <div>
+              <p>Confirm Password:</p>
               <input
                 placeholder=" Confirm Password"
                 type="password"
@@ -116,14 +118,13 @@ export function LoginModal({ loginModalOpen }) {
           </div>
           <div className="footer">
             <Button variant="success">Register Account</Button>
-            <Button
-              variant="warning"
+            <a
               onClick={() => {
                 setRegsiterModal(false);
               }}
             >
               Go back to Login
-            </Button>
+            </a>
           </div>
         </div>
       </div>

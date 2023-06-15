@@ -1,4 +1,5 @@
 .login-modal-background {
+  z-index: 99;
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.6);
@@ -8,12 +9,39 @@
   align-items: center;
 }
 
-.login-modal-background p {
+.login-modal-container p {
   margin: 0px;
 }
 
+.login-modal-container input {
+  width: 100%;
+  font-size: 22px;
+}
+
+.login-modal-container button {
+  margin-top: 0px;
+  border: none;
+  font-weight: 800;
+}
+
+.login-modal-container .body > * {
+  margin-bottom: 1rem;
+}
+
+.login-modal-container .footer {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.login-modal-container .footer > * {
+  margin-top: 1rem;
+}
+
 .login-modal-container {
-  width: 400px;
+  z-index: 99;
+  width: 380px;
+  padding: 36px;
   height: auto;
   border-radius: 12px;
   background-color: white;
