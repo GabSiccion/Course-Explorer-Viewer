@@ -1,0 +1,24 @@
+.login-modal-background {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-modal-background p {
+  margin: 0px;
+}
+
+.login-modal-container {
+  width: 400px;
+  height: auto;
+  border-radius: 12px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  display: grid;
+  row-gap: 1rem;
+  padding: 25px;
+}

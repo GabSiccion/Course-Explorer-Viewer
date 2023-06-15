@@ -8,6 +8,7 @@ export function Courses() {
     SelectedCourseContext
   );
   const [courseData, setCourseData] = useState({});
+  const [quizModalOpen, setQuizModalOpen] = useState(false);
 
   useEffect(() => {
     const getCourseData = async () => {
