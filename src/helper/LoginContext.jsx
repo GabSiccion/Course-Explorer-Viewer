@@ -1,6 +1,10 @@
 import { createContext } from "react";
 
 export const LoginContext = createContext({
-  loginState: false,
+  loginState: {
+    loggedIn: false,
+    userName: "",
+    userPassword: "",
+  },
   setLoginState: () => undefined,
 });

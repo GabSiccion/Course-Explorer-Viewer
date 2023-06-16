@@ -10,7 +10,11 @@ import { Explorer } from "./pages/Explorer";
 import { LoginContext } from "./helper/LoginContext";
 
 function App() {
-  const [loginState, setLoginState] = useState({});
+  const [loginState, setLoginState] = useState({
+    loggedIn: false,
+    userName: "",
+    userPassword: "",
+  });
   return (
     <>
       <LoginContext.Provider value={{ loginState, setLoginState }}>
