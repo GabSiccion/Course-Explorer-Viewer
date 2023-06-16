@@ -68,6 +68,11 @@ export function Nav() {
           <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
             <ul className="navbar-nav me-auto">
               <li className="nav-item">
+                <h2 className="nav-link fs-5 text-white fw-bolder">
+                  Course Explorer
+                </h2>
+              </li>
+              <li className="nav-item">
                 <Link to="/">
                   <div className="nav-link">Home</div>
                 </Link>

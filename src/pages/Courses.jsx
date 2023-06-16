@@ -35,7 +35,7 @@ export function Courses() {
       let tracks = courseData.courseTracks.map((track) => {
         let topics = track.trackTopics.map((topic) => {
           return (
-            <div className="card m-1">
+            <div className="card m-1 col-4">
               <div className="card-body">
                 <p className="card-title fw-bold">{topic.topicName}</p>
                 <p className="card-text">{topic.topicText}</p>
@@ -52,7 +52,7 @@ export function Courses() {
         });
         let careers = track.trackCareers.map((career) => {
           return (
-            <div className="career-card">
+            <div className="career-card col-md-6">
               <p className="career-name">{career.careerName}</p>
               <p>{career.careerText}</p>
               <p>
