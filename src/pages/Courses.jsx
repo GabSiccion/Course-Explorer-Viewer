@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { SelectedCourseContext } from "../helper/SelectedCourseContext";
 import { db, auth } from "../config/Firebase";
 import { doc, getDoc } from "firebase/firestore";
+import QuizModal from "../components/QuizModal";
 
 export function Courses() {
   const { selectedCourse, setSelectedCourse } = useContext(
@@ -43,6 +44,7 @@ export function Courses() {
                   className="btn btn-success"
                   role="button"
                   href={topic.topicURL}
+                  target="_blank"
                 >
                   View topics and lessons
                 </a>
@@ -52,7 +54,7 @@ export function Courses() {
         });
         let careers = track.trackCareers.map((career) => {
           return (
-            <div className="career-card col-md-6">
+            <div className="career-card col-md-5">
               <p className="career-name">{career.careerName}</p>
               <p>{career.careerText}</p>
               <p>
@@ -68,7 +70,7 @@ export function Courses() {
             <h3>Track Topics</h3>
             <div className="card-container overflow-auto mb-4">{topics}</div>
             <h3>Career Options</h3>
-            <div className="career-container mb-4">{careers}</div>
+            <div className="career-container row mb-4">{careers}</div>
           </div>
         );
       });
@@ -77,6 +79,13 @@ export function Courses() {
 
     return (
       <>
+        {quizModalOpen && (
+          <QuizModal
+            questionsArray={courseData.courseQuestions}
+            setQuizModalOpen={setQuizModalOpen}
+            quizModalOpen={quizModalOpen}
+          />
+        )}
         <div className="jumbotron">
           <div className="container">
             <h1>{courseData.courseName}</h1>
@@ -85,6 +94,18 @@ export function Courses() {
         <div className="course-container container pt-4">
           <p>{courseData.courseTexts}</p>
           <div className="track-container">{Array()}</div>
+        </div>
+        <div className="container pb-4">
+          <div className="row">
+            <button
+              className="btn btn-success fs-4"
+              onClick={() => {
+                setQuizModalOpen(true);
+              }}
+            >
+              Start Quiz
+            </button>
+          </div>
         </div>
       </>
     );

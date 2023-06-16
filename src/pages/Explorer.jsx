@@ -10,12 +10,8 @@ export function Explorer() {
     <SelectedCourseContext.Provider
       value={{ selectedCourse, setSelectedCourse }}
     >
-      <div>
-        <CourseSelection />
-      </div>
-      <div>
-        <Courses />
-      </div>
+      <CourseSelection />
+      <Courses />
     </SelectedCourseContext.Provider>
   );
 }
