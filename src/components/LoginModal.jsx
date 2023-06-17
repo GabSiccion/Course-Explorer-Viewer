@@ -71,12 +71,12 @@ export function LoginModal({ loginModalOpen }) {
           userPassword: password,
         });
         loginModalOpen(false);
-        alert("logged in");
+        alert("Successfully Logged In");
       } else {
-        alert("incorrect credentials");
+        alert("Incorrect credentials");
       }
     } else {
-      alert("all fields must be filled");
+      alert("All fields must be filled");
     }
   };
 

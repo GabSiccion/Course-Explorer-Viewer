@@ -30,9 +30,10 @@ export function AccountModal({ accountModalOpen }) {
     let scoresArray = scores.map((score) => {
       return (
         <>
-          <p>course: {score["course"]}</p>
-          <p>recommendation: {score["recommendation"]}</p>
-          <p>score: {score["score"]}</p>
+          <p>Course: {score["course"]}</p>
+          <p>Recommendation: {score["recommendation"]}</p>
+          <p>Score: {score["score"]}</p>
+          <hr></hr>
         </>
       );
     });
@@ -50,7 +51,7 @@ export function AccountModal({ accountModalOpen }) {
           >
             X
           </button>
-          <h1>ACCOUNT THINGS</h1>
+          <h1>My Scores</h1>
           <div>{accountScores()}</div>
         </div>
       </div>

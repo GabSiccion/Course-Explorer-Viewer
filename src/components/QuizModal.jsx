@@ -102,7 +102,7 @@ function QuizModal({ questionsArray, setQuizModalOpen }) {
               </p>
             </div>
             <div className="question-container">
-              <p className="question mb-3">
+              <p className="question mb-3 fs-4">
                 {questions[currentQuestion]["question"]}
               </p>
             </div>

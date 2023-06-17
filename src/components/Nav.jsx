@@ -75,12 +75,12 @@ export function Nav() {
       {accountModalOpen && (
         <AccountModal accountModalOpen={setAccountModalOpen} />
       )}
-      <div class="bg-dark">
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark container">
+      <div class="bg-white">
+        <nav class="navbar navbar-expand-md navbar-white bg-white container">
           <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
             <ul className="navbar-nav me-auto">
               <li className="nav-item">
-                <h2 className="nav-link fs-5 text-white fw-bolder">
+                <h2 className="nav-link fs-5 text-black fw-bolder">
                   Course Explorer
                 </h2>
               </li>

@@ -14,7 +14,7 @@
 
 .quiz-modal-container {
   z-index: 99;
-  width: 380px;
+  width: 70vw;
   padding: 36px;
   height: auto;
   border-radius: 12px;
@@ -31,6 +31,12 @@
 
 .quiz-modal-container button {
   border: none;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+  background-color: #157347;
+  color: white;
 }
 
 .quiz-modal-container .body > * {

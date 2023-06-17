@@ -106,7 +106,7 @@ export function Courses() {
                 if (loginState["loggedIn"]) {
                   setQuizModalOpen(true);
                 } else {
-                  alert("you need to be logged in to answer the course quiz.");
+                  alert("You need to be logged in to answer the course quiz.");
                 }
               }}
             >
