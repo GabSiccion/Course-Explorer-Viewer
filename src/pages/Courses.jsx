@@ -3,6 +3,7 @@ import { SelectedCourseContext } from "../helper/SelectedCourseContext";
 import { db, auth } from "../config/Firebase";
 import { doc, getDoc } from "firebase/firestore";
 import QuizModal from "../components/QuizModal";
+import { LoginContext } from "../helper/LoginContext";
 
 export function Courses() {
   const { selectedCourse, setSelectedCourse } = useContext(
@@ -10,8 +11,10 @@ export function Courses() {
   );
   const [courseData, setCourseData] = useState({});
   const [quizModalOpen, setQuizModalOpen] = useState(false);
+  const { loginState } = useContext(LoginContext);
 
   useEffect(() => {
+    console.log(loginState);
     const getCourseData = async () => {
       const courseData = await getDoc(doc(db, "courses", selectedCourse));
       if (courseData.data != undefined) {
@@ -100,7 +103,11 @@ export function Courses() {
             <button
               className="btn btn-success fs-4"
               onClick={() => {
-                setQuizModalOpen(true);
+                if (loginState["loggedIn"]) {
+                  setQuizModalOpen(true);
+                } else {
+                  alert("you need to be logged in to answer the course quiz.");
+                }
               }}
             >
               Start Quiz

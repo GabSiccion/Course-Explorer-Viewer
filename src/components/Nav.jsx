@@ -5,10 +5,12 @@ import { db, auth, coursesCollectionRef } from "../config/Firebase";
 import { SelectedCourseContext } from "../helper/SelectedCourseContext";
 import { LoginModal } from "./LoginModal";
 import { LoginContext } from "../helper/LoginContext";
+import { AccountModal } from "../components/AccountModal";
 
 export function Nav() {
   const { loginState, setLoginState } = useContext(LoginContext);
   const [loginModalOpen, setLoginModalOpen] = useState(false);
+  const [accountModalOpen, setAccountModalOpen] = useState(false);
   console.log(loginState.loggedIn);
 
   function logOut() {
@@ -25,7 +27,14 @@ export function Nav() {
         <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <div className="nav-link">{loginState.userName}</div>
+              <div
+                className="nav-link"
+                onClick={() => {
+                  setAccountModalOpen(true);
+                }}
+              >
+                {loginState.userName}
+              </div>
             </li>
             <li class="nav-item">
               <div
@@ -63,6 +72,9 @@ export function Nav() {
   return (
     <>
       {loginModalOpen && <LoginModal loginModalOpen={setLoginModalOpen} />}
+      {accountModalOpen && (
+        <AccountModal accountModalOpen={setAccountModalOpen} />
+      )}
       <div class="bg-dark">
         <nav class="navbar navbar-expand-md navbar-dark bg-dark container">
           <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">

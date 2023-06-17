@@ -1,6 +1,8 @@
-import React, { useEffect } from "react";
-import { useState, useContext } from "react";
+import { useEffect, useContext, useState } from "react";
 import { SelectedCourseContext } from "../helper/SelectedCourseContext";
+import { getDocs, query, collection, addDoc, where } from "firebase/firestore";
+import { LoginContext } from "../helper/LoginContext";
+import { db } from "../config/Firebase";
 import "./QuizModal.css";
 
 function shuffle(array) {
@@ -27,14 +29,45 @@ function QuizModal({ questionsArray, setQuizModalOpen }) {
   let questions = questionsArray.slice();
   shuffle(questions);
 
+  const { selectedCourse, selectedCourseName } = useContext(
+    SelectedCourseContext
+  );
+  const { loginState } = useContext(LoginContext);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [scores, setScores] = useState([]);
   const [tracks, setTracks] = useState([]);
   const [quizEnd, setQuizEnd] = useState(false);
 
   useEffect(() => {
+    console.log(selectedCourse);
+    console.log(selectedCourseName);
+    console.log(loginState["userName"]);
     console.log(questions.length);
   }, []);
+
+  async function saveScore() {
+    let score = Math.round((getSumOfArray(scores) / questions.length) * 100);
+    console.log(score);
+
+    const quizAlreadyAnsweredQuery = query(
+      collection(db, "scores"),
+      where("userName", "==", loginState["userName"]),
+      where("courseName", "==", selectedCourseName)
+    );
+    const checkQuiz = await getDocs(quizAlreadyAnsweredQuery);
+    if (checkQuiz.empty) {
+      await addDoc(collection(db, "scores"), {
+        userName: loginState.userName,
+        course: selectedCourseName,
+        score: score,
+        recommendation: tracks[findIndexOfHighestScore(scores)],
+      });
+    } else {
+      alert(
+        "You have answered the quiz before, your score has not been recorded."
+      );
+    }
+  }
 
   function answerSelected(e) {
     setCurrentQuestion(currentQuestion + 1);
@@ -113,8 +146,7 @@ function QuizModal({ questionsArray, setQuizModalOpen }) {
       </div>
     );
   } else {
-    console.log(tracks);
-    console.log(scores);
+    saveScore();
     return (
       <div className="quiz-modal-background">
         <div className="quiz-modal-container">
@@ -141,6 +173,9 @@ function QuizModal({ questionsArray, setQuizModalOpen }) {
             <p className="m-1 fs-5">
               Total Score: {getSumOfArray(scores)}/{questions.length}
             </p>
+            <p className="m-1 fs-5">
+              Highest scoring track: {tracks[findIndexOfHighestScore(scores)]}
+            </p>
           </div>
         </div>
       </div>
@@ -154,6 +189,23 @@ function getSumOfArray(array) {
     sum = sum + num;
   });
   return sum;
+}
+
+function findIndexOfHighestScore(arr) {
+  if (arr.length === 0) {
+    return -1; // Return -1 for an empty array
+  }
+
+  let maxNumber = arr[0];
+  let maxIndex = 0;
+  for (let i = 1; i < arr.length; i++) {
+    if (arr[i] > maxNumber) {
+      maxNumber = arr[i];
+      maxIndex = i;
+    }
+  }
+
+  return maxIndex;
 }
 
 export default QuizModal;

@@ -7,12 +7,16 @@ import { Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 export function CourseSelection() {
-  const { selectedCourse, setSelectedCourse } = useContext(
-    SelectedCourseContext
-  );
+  const {
+    selectedCourse,
+    setSelectedCourse,
+    selectedCourseName,
+    setSelectedCourseName,
+  } = useContext(SelectedCourseContext);
 
   const selectCourse = (e) => {
     setSelectedCourse(e.target.getAttribute("course-key"));
+    setSelectedCourseName(e.target.getAttribute("value"));
   };
 
   const [courseList, setCourseList] = useState([]);

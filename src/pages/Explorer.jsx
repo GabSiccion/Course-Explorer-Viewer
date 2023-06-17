@@ -6,9 +6,15 @@ import { CourseSelection } from "../components/CourseSelection";
 
 export function Explorer() {
   const [selectedCourse, setSelectedCourse] = useState("");
+  const [selectedCourseName, setSelectedCourseName] = useState("");
   return (
     <SelectedCourseContext.Provider
-      value={{ selectedCourse, setSelectedCourse }}
+      value={{
+        selectedCourse,
+        setSelectedCourse,
+        selectedCourseName,
+        setSelectedCourseName,
+      }}
     >
       <CourseSelection />
       <Courses />
