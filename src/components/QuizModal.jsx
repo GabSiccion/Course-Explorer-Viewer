@@ -36,7 +36,6 @@ function QuizModal({ questionsArray, setQuizModalOpen }) {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [scores, setScores] = useState([]);
   const [tracks, setTracks] = useState([]);
-  const [quizEnd, setQuizEnd] = useState(false);
 
   useEffect(() => {
     console.log(selectedCourse);
@@ -61,7 +60,7 @@ function QuizModal({ questionsArray, setQuizModalOpen }) {
         course: selectedCourseName,
         score: score,
         recommendation: tracks[findIndexOfHighestScore(scores)],
-      });
+      }).then(alert("Your score has been saved."));
     } else {
       alert(
         "You have answered the quiz before, your score has not been recorded."
@@ -146,18 +145,17 @@ function QuizModal({ questionsArray, setQuizModalOpen }) {
       </div>
     );
   } else {
-    saveScore();
     return (
       <div className="quiz-modal-background">
         <div className="quiz-modal-container">
           <div className="quiz-modal-body">
             <button
               onClick={() => {
-                setQuizModalOpen(false);
+                saveScore();
                 setCurrentQuestion(0);
                 setScores([]);
                 setTracks([]);
-                setQuizEnd(false);
+                setQuizModalOpen(false);
               }}
             >
               X
