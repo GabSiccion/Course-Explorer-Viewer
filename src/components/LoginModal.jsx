@@ -7,6 +7,9 @@ import "./LoginModal.css";
 
 export function LoginModal({ loginModalOpen }) {
   const { loginState, setLoginState } = useContext(LoginContext);
+  const [name, setName] = useState("");
+  const [gender, setGender] = useState("");
+  const [school, setSchool] = useState("");
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -25,7 +28,16 @@ export function LoginModal({ loginModalOpen }) {
   }, [registerModal]);
 
   const registerUser = async () => {
-    if (!(userName === "" || password === "" || confirmPassword === "")) {
+    if (
+      !(
+        userName === "" ||
+        password === "" ||
+        confirmPassword === "" ||
+        gender === "" ||
+        name === "" ||
+        school === ""
+      )
+    ) {
       if (password.length > 5) {
         if (userName.length > 5) {
           if (password === confirmPassword) {
@@ -36,6 +48,9 @@ export function LoginModal({ loginModalOpen }) {
             const sameEmails = await getDocs(sameEmailsQuery);
             if (sameEmails.empty) {
               await addDoc(collection(db, "users"), {
+                fullName: name,
+                gender: gender,
+                school: school,
                 userName: userName,
                 userPassword: password,
                 role: "user",
@@ -65,10 +80,16 @@ export function LoginModal({ loginModalOpen }) {
       );
       const User = await getDocs(userQuery);
       if (!User.empty) {
-        setLoginState({
-          loggedIn: true,
-          userName: userName,
-          userPassword: password,
+        User.docs.forEach((d) => {
+          let doc = JSON.parse(JSON.stringify(d.data()));
+          setLoginState({
+            name: doc["fullName"],
+            gender: doc["gender"],
+            school: doc["school"],
+            loggedIn: true,
+            userName: doc["userName"],
+            userPassword: doc["userPassword"],
+          });
         });
         loginModalOpen(false);
         alert("Successfully Logged In");
@@ -149,6 +170,33 @@ export function LoginModal({ loginModalOpen }) {
             <p className="fs-1">Create Account</p>
           </div>
           <div className="body">
+            <div>
+              <p>Full Name:</p>
+              <input
+                placeholder="Full Name"
+                onChange={(e) => {
+                  setName(e.target.value);
+                }}
+              />
+            </div>
+            <div>
+              <p>Gender:</p>
+              <input
+                placeholder="Gender"
+                onChange={(e) => {
+                  setGender(e.target.value);
+                }}
+              />
+            </div>
+            <div>
+              <p>School/University:</p>
+              <input
+                placeholder="School/University"
+                onChange={(e) => {
+                  setSchool(e.target.value);
+                }}
+              />
+            </div>
             <div>
               <p>Username:</p>
               <input

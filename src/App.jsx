@@ -11,6 +11,9 @@ import { LoginContext } from "./helper/LoginContext";
 
 function App() {
   const [loginState, setLoginState] = useState({
+    name: "",
+    gender: "",
+    school: "",
     loggedIn: false,
     userName: "",
     userPassword: "",
