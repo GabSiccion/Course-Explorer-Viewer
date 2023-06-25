@@ -36,41 +36,34 @@ function QuizModal({ questionsArray, setQuizModalOpen }) {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [scores, setScores] = useState([]);
   const [tracks, setTracks] = useState([]);
-  const [quizAnswered, setQuizAnswered] = useState(false);
-
-  useEffect(() => {
-    const checkIfUserAnsweredAlready = async () => {
-      const quizAlreadyAnsweredQuery = query(
-        collection(db, "scores"),
-        where("userName", "==", loginState["userName"]),
-        where("courseName", "==", selectedCourseName)
-      );
-      const checkQuiz = await getDocs(quizAlreadyAnsweredQuery);
-      if (checkQuiz.empty) {
-        return false;
-      } else {
-        return true;
-      }
-    };
-    setQuizAnswered(checkIfUserAnsweredAlready());
-  }, []);
+  var quizAnswered;
 
   async function saveScore() {
     let score = Math.round((getSumOfArray(scores) / questions.length) * 100);
     console.log(score);
 
-    if (!quizAnswered) {
-      await addDoc(collection(db, "scores"), {
-        userName: loginState.userName,
-        course: selectedCourseName,
-        score: score,
-        recommendation: tracks[findIndexOfHighestScore(scores)],
-      }).then(alert("Your score has been saved."));
-    } else {
-      alert(
-        "You have answered the quiz before, your score has not been recorded."
-      );
-    }
+    const quizAlreadyAnsweredQuery = query(
+      collection(db, "scores"),
+      where("userName", "==", loginState["userName"]),
+      where("course", "==", selectedCourseName)
+    );
+
+    await getDocs(quizAlreadyAnsweredQuery).then(async (docs) => {
+      console.log(docs);
+      if (docs.empty) {
+        await addDoc(collection(db, "scores"), {
+          userName: loginState.userName,
+          course: selectedCourseName,
+          score: score,
+          recommendation: tracks[findIndexOfHighestScore(scores)],
+        }).then(alert("Your score has been saved."));
+      } else {
+        alert(
+          "You have answered the quiz before, your score has not been recorded."
+        );
+      }
+      console.log(quizAnswered);
+    });
   }
 
   function answerSelected(e) {
