@@ -182,6 +182,7 @@ export function LoginModal({ loginModalOpen }) {
             <div>
               <p>Gender:</p>
               <select
+                value=""
                 onChange={(e) => {
                   setGender(e.target.value);
                 }}
