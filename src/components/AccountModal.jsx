@@ -26,12 +26,41 @@ export function AccountModal({ accountModalOpen }) {
     console.log(scores);
   }, []);
 
+  const accountRecommendation = () => {
+    if (scores.length > 0) {
+      let recommendation = scores[0];
+      let value = scores[0]["score"];
+
+      scores.map((score) => {
+        if (score["score"] > value) {
+          recommendation = structuredClone(score);
+        }
+      });
+
+      console.log(recommendation);
+      return (
+        <>
+          <h3 className="mt-4">Highest Recommendation</h3>
+          <p className="mb-1">Course: {recommendation["course"]}</p>
+          <p className="mb-1">
+            highest scoring track: {recommendation["recommendation"]}
+          </p>
+          <p className="mb-1">Score: {recommendation["score"]}</p>
+        </>
+      );
+    } else {
+      return <p>Haven't answered yet</p>;
+    }
+  };
+
   const accountScores = () => {
     let scoresArray = scores.map((score) => {
       return (
         <>
           <p className="mb-1">Course: {score["course"]}</p>
-          <p className="mb-1">Recommendation: {score["recommendation"]}</p>
+          <p className="mb-1">
+            highest scoring track: {score["recommendation"]}
+          </p>
           <p className="mb-1">Score: {score["score"]}</p>
         </>
       );
@@ -42,18 +71,10 @@ export function AccountModal({ accountModalOpen }) {
   const accountDetails = () => {
     return (
       <>
+        <p className="mb-1">Username: {loginState["userName"]}</p>
         <p className="mb-1">Name: {loginState["name"]}</p>
         <p className="mb-1">Gender: {loginState["gender"]}</p>
         <p className="mb-1">School: {loginState["school"]}</p>
-      </>
-    );
-  };
-
-  const loginDetails = () => {
-    return (
-      <>
-        <p className="mb-1">Username: {loginState["userName"]}</p>
-        <p className="mb-1">Password: {loginState["userPassword"]}</p>
       </>
     );
   };
@@ -69,12 +90,15 @@ export function AccountModal({ accountModalOpen }) {
           >
             X
           </button>
-          <h3>Account Details</h3>
-          <div className="mb-4">{accountDetails()}</div>
-          <h3>Login Details</h3>
-          <div className="mb-4">{loginDetails()}</div>
-          <h3>Scores</h3>
-          <div className="mb-4">{accountScores()}</div>
+          <div className="mb-4">
+            <h3>Account Details</h3>
+            {accountDetails()}
+          </div>
+          <div className="mb-4">
+            <h3>Scores</h3>
+            {accountScores()}
+            {accountRecommendation()}
+          </div>
         </div>
       </div>
     </div>
