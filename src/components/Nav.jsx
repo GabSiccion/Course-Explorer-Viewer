@@ -1,8 +1,5 @@
-import { getDocs, collection, doc, onSnapshot } from "firebase/firestore";
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import { db, auth, coursesCollectionRef } from "../config/Firebase";
-import { SelectedCourseContext } from "../helper/SelectedCourseContext";
 import { LoginModal } from "./LoginModal";
 import { LoginContext } from "../helper/LoginContext";
 import { AccountModal } from "../components/AccountModal";
@@ -18,6 +15,9 @@ export function Nav() {
       loggedIn: false,
       userName: "",
       userPassword: "",
+      school: "",
+      name: "",
+      gender: "",
     });
   }
 

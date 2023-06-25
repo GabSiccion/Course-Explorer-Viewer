@@ -36,25 +36,30 @@ function QuizModal({ questionsArray, setQuizModalOpen }) {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [scores, setScores] = useState([]);
   const [tracks, setTracks] = useState([]);
+  const [quizAnswered, setQuizAnswered] = useState(false);
 
   useEffect(() => {
-    console.log(selectedCourse);
-    console.log(selectedCourseName);
-    console.log(loginState["userName"]);
-    console.log(questions.length);
+    const checkIfUserAnsweredAlready = async () => {
+      const quizAlreadyAnsweredQuery = query(
+        collection(db, "scores"),
+        where("userName", "==", loginState["userName"]),
+        where("courseName", "==", selectedCourseName)
+      );
+      const checkQuiz = await getDocs(quizAlreadyAnsweredQuery);
+      if (checkQuiz.empty) {
+        return false;
+      } else {
+        return true;
+      }
+    };
+    setQuizAnswered(checkIfUserAnsweredAlready());
   }, []);
 
   async function saveScore() {
     let score = Math.round((getSumOfArray(scores) / questions.length) * 100);
     console.log(score);
 
-    const quizAlreadyAnsweredQuery = query(
-      collection(db, "scores"),
-      where("userName", "==", loginState["userName"]),
-      where("courseName", "==", selectedCourseName)
-    );
-    const checkQuiz = await getDocs(quizAlreadyAnsweredQuery);
-    if (checkQuiz.empty) {
+    if (!quizAnswered) {
       await addDoc(collection(db, "scores"), {
         userName: loginState.userName,
         course: selectedCourseName,

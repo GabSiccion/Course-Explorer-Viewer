@@ -181,12 +181,15 @@ export function LoginModal({ loginModalOpen }) {
             </div>
             <div>
               <p>Gender:</p>
-              <input
-                placeholder="Gender"
+              <select
                 onChange={(e) => {
                   setGender(e.target.value);
                 }}
-              />
+              >
+                <option value="male">male</option>
+                <option value="female">female</option>
+                <option value="other">other</option>
+              </select>
             </div>
             <div>
               <p>School/University:</p>

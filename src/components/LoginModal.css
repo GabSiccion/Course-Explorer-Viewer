@@ -18,6 +18,13 @@
   font-size: 22px;
 }
 
+.login-modal-container select {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  width: 100%;
+  font-size: 22px;
+}
+
 .login-modal-container button {
   margin-top: 0px;
   border: none;

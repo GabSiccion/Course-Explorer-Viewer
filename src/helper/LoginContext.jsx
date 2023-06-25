@@ -8,7 +8,6 @@ export const LoginContext = createContext({
     loggedIn: false,
     userName: "",
     userPassword: "",
-    scores: [],
   },
   setLoginState: () => undefined,
 });
