@@ -186,13 +186,9 @@ export function LoginModal({ loginModalOpen }) {
                   setGender(e.target.value);
                 }}
               >
-                <option
-                  selected
-                  disabled
-                  hidden
-                  style="display: none"
-                  value=""
-                ></option>
+                <option hidden value="">
+                  Select your gender
+                </option>
                 <option value="male">male</option>
                 <option value="female">female</option>
                 <option value="other">other</option>
