@@ -60,7 +60,7 @@ export function AccountModal({ accountModalOpen }) {
           <p className="mb-1">
             highest scoring track: {score["recommendation"]}
           </p>
-          <p className="mb-1">Score: {score["score"]}</p>
+          <p className="mb-1">Score: {score["score"]}%</p>
         </div>
       );
     });
