@@ -50,3 +50,8 @@
   row-gap: 1rem;
   padding: 25px;
 }
+
+.scores-div {
+  overflow-y: scroll;
+  max-height: 300px;
+}

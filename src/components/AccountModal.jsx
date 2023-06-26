@@ -37,10 +37,9 @@ export function AccountModal({ accountModalOpen }) {
         }
       });
 
-      console.log(recommendation);
       return (
         <>
-          <h3 className="mt-4">Highest Recommendation</h3>
+          <p className="mt-4 fs-5 my-1">Best Scoring track</p>
           <p className="mb-1">Course: {recommendation["course"]}</p>
           <p className="mb-1">
             highest scoring track: {recommendation["recommendation"]}
@@ -56,13 +55,13 @@ export function AccountModal({ accountModalOpen }) {
   const accountScores = () => {
     let scoresArray = scores.map((score) => {
       return (
-        <>
+        <div className="bg-success text-white p-2 my-2 rounded-1">
           <p className="mb-1">Course: {score["course"]}</p>
           <p className="mb-1">
             highest scoring track: {score["recommendation"]}
           </p>
           <p className="mb-1">Score: {score["score"]}</p>
-        </>
+        </div>
       );
     });
     return scoresArray;
@@ -93,11 +92,11 @@ export function AccountModal({ accountModalOpen }) {
           <div className="mb-4">
             <h3>Account Details</h3>
             {accountDetails()}
+            {accountRecommendation()}
           </div>
           <div className="mb-4">
             <h3>Scores</h3>
-            {accountScores()}
-            {accountRecommendation()}
+            <div className="scores-div mb-4">{accountScores()}</div>
           </div>
         </div>
       </div>
