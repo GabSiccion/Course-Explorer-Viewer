@@ -44,7 +44,7 @@ export function AccountModal({ accountModalOpen }) {
           <p className="mb-1">
             highest scoring track: {recommendation["recommendation"]}
           </p>
-          <p className="mb-1">Score: {recommendation["score"]}</p>
+          <p className="mb-1">Score: {recommendation["score"]}%</p>
         </>
       );
     } else {
