@@ -95,10 +95,8 @@ export function AccountModal({ accountModalOpen }) {
             {accountDetails()}
             {accountRecommendation()}
           </div>
-          <div>
-            <h3>Scores</h3>
-            <div className="scores-div">{accountScores()}</div>
-          </div>
+          <h3>Scores</h3>
+          <div className="scores-div">{accountScores()}</div>
         </div>
       </div>
     </div>

@@ -50,6 +50,7 @@
   display: grid;
   row-gap: 1rem;
   padding: 25px;
+  overflow-y: scroll;
 }
 
 .scores-div {
