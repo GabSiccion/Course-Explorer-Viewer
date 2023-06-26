@@ -83,6 +83,7 @@ export function AccountModal({ accountModalOpen }) {
       <div className="account-modal-container">
         <div className="account-modal-body">
           <button
+            className="float-end"
             onClick={() => {
               accountModalOpen(false);
             }}
@@ -94,9 +95,9 @@ export function AccountModal({ accountModalOpen }) {
             {accountDetails()}
             {accountRecommendation()}
           </div>
-          <div className="mb-4">
+          <div>
             <h3>Scores</h3>
-            <div className="scores-div mb-4">{accountScores()}</div>
+            <div className="scores-div">{accountScores()}</div>
           </div>
         </div>
       </div>
